@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -40,17 +41,53 @@ INSTALLED_APPS = [
     'alquilersys'
 ]
 
+
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # 'corsheaders.middleware.CorsMiddleware',
 ]
 
+CSRF_COOKIE_HTTPONLY = True
+
+CSRF_HEADER_NAME = 'HTTP_X_CSRFTOKEN'
+
 ROOT_URLCONF = 'alquilersys.urls'
+
+CORS_ORIGIN_ALLOW_ALL = True
+
+SESSION_COOKIE_SECURE = True
+
+CORS_ALLOWED_ORIGINS = ["http://localhost:3000"]  # Replace with your React app's URL
+CORS_ALLOW_METHODS = [
+    'DELETE',
+    'GET',
+    'POST',
+    'PUT',
+    'OPTIONS',
+]
+
+CORS_ALLOW_HEADERS = [
+    'Accept',
+    'Accept-Encoding',
+    'Authorization',
+    'Content-Type',
+    'Origin',
+    'Referer',
+    'User-Agent',
+    'X-CSRFToken',  # Agrega 'X-CSRFToken' a la lista de encabezados permitidos
+]
+
+CSRF_TRUSTED_ORIGINS = ["http://localhost:3000"] 
+
+CSRF_COOKIE_SECURE = False  # Desactiva el uso seguro de la cookie CSRF
+
 
 TEMPLATES = [
     {
