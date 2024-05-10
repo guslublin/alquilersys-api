@@ -2,6 +2,9 @@
 	"folders": [
 		{
 			"path": "."
+		},
+		{
+			"path": "../book_place_ui"
 		}
 	],
 	"settings": {}
