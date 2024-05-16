@@ -27,9 +27,23 @@ from .views import agregar_rol
 from .views import eliminar_plan
 from .views import usuarios
 from .views import agregar_usuario
+from .views import eliminar_usuario
+from .views import usuarios_login
+
+from .views import obtener_todas_las_categorias
+from .views import obtener_categoria
+from .views import agregar_categoria
+from .views import eliminar_categoria
+
+from .views import obtener_todos_los_autores
+from .views import obtener_autor
+from .views import agregar_autor
+from .views import eliminar_autor
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    
     path('libros/', obtener_todos_los_libros, name='libros'),
     path('libros/<int:libro_id>/', obtener_libro, name='libro'),
     path('libros/agregar/', agregar_libro, name='agregar_libro'),
@@ -45,7 +59,20 @@ urlpatterns = [
 
     path('usuarios/', usuarios, name='usuarios'),
     path('usuarios/agregar/', agregar_usuario, name='agregar_usuario'),
+    path('usuarios/eliminar_usuario/<int:id>/', eliminar_usuario, name='eliminar_usuario'),
+    path('usuarios/login/', usuarios_login, name='usuarios_login'),
 
+
+    path('categorias/', obtener_todas_las_categorias, name='categorias'),
+    path('categorias/<int:categoria_id>/', obtener_categoria, name='categoria'),
+    path('categorias/agregar/', agregar_categoria, name='agregar_categoria'),
+    path('categorias/eliminar_categoria/<int:id>/', eliminar_categoria, name='eliminar_categoria'),
+
+
+    path('autores/', obtener_todos_los_autores, name='autores'),
+    path('autores/<int:autor_id>/', obtener_autor, name='autor'),
+    path('autores/agregar/', agregar_autor, name='agregar_autor'),
+    path('autores/eliminar_autor/<int:id>/', eliminar_autor, name='eliminar_autor'),
 
 ]
 

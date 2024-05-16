@@ -1,16 +1,11 @@
 # En tu_app/models.py
 from django.db import models
 
-class Libro(models.Model):
-    id = models.AutoField(primary_key=True)
-    nombre = models.CharField(max_length=255)
-    autor = models.CharField(max_length=255)
-
 class Plan(models.Model):
     id = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=255)
     valor = models.DecimalField(max_digits=10, decimal_places=2)
-    dias = models.DateField()
+    dias = models.IntegerField(default=0) 
 
 class Rol(models.Model):
     id = models.AutoField(primary_key=True)
@@ -26,5 +21,26 @@ class Usuario(models.Model):
     id_rol = models.ForeignKey(Rol, on_delete=models.CASCADE)
     contrasena = models.CharField(max_length=128) 
 
-    class Meta:
-        app_label = 'alquilersys'
+class Categoria(models.Model):
+    id = models.AutoField(primary_key=True)
+    nombre = models.CharField(max_length=255)
+
+class Autor(models.Model):
+    id = models.AutoField(primary_key=True)
+    nombre = models.CharField(max_length=255)
+
+class Libro(models.Model):
+    id = models.AutoField(primary_key=True)
+    titulo = models.CharField(max_length=255)
+    editorial = models.CharField(max_length=255)
+    resumen = models.CharField(max_length=255)
+    fecha_entrada = models.DateField()
+    cantidad = models.IntegerField(default=0) 
+    disponible = models.BooleanField()
+    id_categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
+    id_autor = models.ForeignKey(Autor, on_delete=models.CASCADE)
+    id_usuario_alta = models.ForeignKey(Usuario, on_delete=models.CASCADE)   
+     
+
+class Meta:
+    app_label = 'alquilersys'
